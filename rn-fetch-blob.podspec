@@ -1,13 +1,19 @@
+require 'json'
+
+package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
+
 Pod::Spec.new do |s|
-  s.name             = "rn-fetch-blob"
-  s.version          = "0.10.16"
-  s.summary          = "A project committed to make file acess and data transfer easier, effiecient for React Native developers."
-  s.requires_arc = true
-  s.license      = 'MIT'
-  s.homepage     = 'n/a'
-  s.source       = { :git => "https://github.com/joltup/rn-fetch-blob", :tag => 'v0.10.16'}
-  s.author       = 'Joltup'
-  s.source_files = 'ios/**/*.{h,m}'
-  s.platform     = :ios, "8.0"
-  s.dependency 'React-Core'
+  s.name         = package['name']
+  s.version      = package['version']
+  s.summary      = package['description']
+  s.license      = package['license']
+
+  s.authors      = package['author']
+  s.homepage     = package['homepage']
+  s.platform     = :ios, "9.0"
+
+  s.source       = { :git => "https://github.com/MattiasMansson/rn-fetch-blobn", :tag => "v#{s.version}" }
+  s.source_files  = "ios/**/*.{h,m}"
+
+  s.dependency 'React'
 end
